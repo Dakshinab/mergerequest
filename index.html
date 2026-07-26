@@ -1559,7 +1559,7 @@
 </footer>
 
 <script>
-const GROQ_API_KEY = "YOUR_GROQ_API_KEY";
+
 const SYSTEM_PROMPT = `You are MergeRequest — the AI agent representing Dakshina Dissanayake to recruiters and hiring managers. Your job is to present Dakshina professionally, confidently, and accurately based on the following profile. Be concise, direct, and enthusiastic about his work. Never make things up.
 
 ABOUT DAKSHINA:
@@ -1668,22 +1668,16 @@ async function sendMessage() {
   showTyping();
 
   try {
-    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + GROQ_API_KEY
-      },
-      body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile',
-        messages: [
-          { role: 'system', content: SYSTEM_PROMPT },
-          ...conversationHistory
-        ],
-        max_tokens: 400,
-        temperature: 0.7
-      })
-    });
+    const res = await fetch('/api/chat', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    messages: [
+      { role: 'system', content: SYSTEM_PROMPT },
+      ...conversationHistory
+    ]
+  })
+});
 
     const data = await res.json();
     const reply = data.choices?.[0]?.message?.content || "I'm having trouble connecting right now. Please email Dakshina directly at dakshinabanu@gmail.com";
