@@ -2,7 +2,7 @@
 
 > An AI-powered personal agent that pitches me to recruiters — so they call me instead of scrolling past my CV.
 
-**Live demo → [mergerequest.vercel.app](https://mergerequest.vercel.app)**
+**Live demo → [mergerequest.vercel.app](https://mergerequest-inky.vercel.app/)**
 
 ![MergeRequest Preview](Images/dakshina.jpeg)
 
