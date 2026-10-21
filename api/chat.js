@@ -73,7 +73,7 @@ export default async function handler(req, res) {
 
     const data = await response.json();
     if (!response.ok) {
-      return res.status(502).json({ error: 'The AI service is temporarily unavailable. Please try again shortly.' });
+      console.error('Groq error', response.status, JSON.stringify(data)); return res.status(502).json({ error: 'The AI service is temporarily unavailable. Please try again shortly.', upstream_status: response.status, upstream_message: data?.error?.message });
     }
 
     return res.status(200).json(data);
