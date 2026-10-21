@@ -45,7 +45,7 @@ export default async function handler(req, res) {
       !message ||
       !['user', 'assistant'].includes(message.role) && !(index === 0 && message.role === 'system') ||
       typeof message.content !== 'string' ||
-      message.content.length > (message.role === 'system' ? 20000 : 1000)
+      message.content.length > ({ system: 20000, assistant: 4000 }[message.role] || 1000)
     ));
 
     if (invalidMessage) {
