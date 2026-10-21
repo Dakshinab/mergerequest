@@ -4,7 +4,7 @@ AI-powered DevOps portfolio of Dakshina Dissanayake (Junior DevOps Engineer).
 
 ## Live demo
 
-https://mergerequest.vercel.app
+https://mergerequest-inky.vercel.app
 
 [![CI](https://github.com/Dakshinab/mergerequest/actions/workflows/ci.yml/badge.svg)](https://github.com/Dakshinab/mergerequest/actions/workflows/ci.yml)
 
