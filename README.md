@@ -23,7 +23,7 @@ https://mergerequest-inky.vercel.app
 - HTML and CSS
 - Vanilla JavaScript
 - Vercel serverless function
-- Groq: `llama-3.3-70b-versatile`
+- Groq: `openai/gpt-oss-120b`
 
 There is no build step.
 
