@@ -1,129 +1,74 @@
 # MergeRequest
 
-[![Portfolio CI](https://github.com/Dakshinab/mergerequest/actions/workflows/ci.yml/badge.svg)](https://github.com/Dakshinab/mergerequest/actions/workflows/ci.yml)
+AI-powered DevOps portfolio of Dakshina Dissanayake (Junior DevOps Engineer).
 
-> A DevOps-focused portfolio and AI recruiter agent for Dakshina Dissanayake.
+## Live demo
 
-**Live demo → [mergerequest.vercel.app](https://mergerequest.vercel.app)**
+https://mergerequest.vercel.app
 
-![MergeRequest Preview](Images/dakshina.jpeg)
+[![CI](https://github.com/Dakshinab/mergerequest/actions/workflows/ci.yml/badge.svg)](https://github.com/Dakshinab/mergerequest/actions/workflows/ci.yml)
 
----
+## What is on the site
 
-## What is this?
+- Pipeline hero showing a deployment run from commit to healthy service
+- Four DevOps projects with architecture diagrams in `Images/*.svg`
+- DevOps skills
+- Work experience
+- Certifications and training
+- AI agent for recruiter questions
+- CV download
 
-MergeRequest is a recruiter-facing portfolio for a Junior DevOps Engineer. It presents AWS, Terraform, Kubernetes, Docker, CI/CD, security, and observability work, then lets recruiters ask an AI agent about the projects and experience.
+## Tech stack
 
-Instead of a PDF that gets ignored, recruiters spend 5 minutes having a conversation with my AI agent. By the time they hit "Contact", they already know who I am.
+- HTML and CSS
+- Vanilla JavaScript
+- Vercel serverless function
+- Groq: `llama-3.3-70b-versatile`
 
----
+There is no build step.
 
-## Features
+## How the chat works
 
-- **Live pipeline hero** — animated commit-to-health delivery flow with reduced-motion support
-- **DevOps project showcase** — OrderFlow, DeployFlow, CloudPath, Serene Stay, SmartLink, and secondary projects
-- **Architecture diagrams** — hand-authored accessible SVG diagrams for DevOps projects
-- **DevOps skills grid** — AWS, Terraform, CI/CD, security, containers, Kubernetes, monitoring, Linux, networking, and cost management
-- **AI Agent Chat** — powered by Groq LLaMA 3.3 70B, focused on DevOps and cloud questions
-- **Experience and training** — Codezela and I4matrix experience plus DevOps training badges
-- **Contact section** — direct links to email, LinkedIn, and GitHub
-- **Mobile-first** — works perfectly on any device from a LinkedIn link
-- **Dark terminal aesthetic** — clean, premium, memorable
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Frontend | HTML, CSS, Vanilla JS |
-| AI Model | Groq API — LLaMA 3.3 70B Versatile |
-| Hosting | Vercel |
-| Font | Inter + JetBrains Mono (Google Fonts) |
-| CI | GitHub Actions — HTML validation and link checks |
-
-No frontend framework or build step is required. The static page and serverless chat route deploy directly to Vercel.
-
----
-
-## Project Structure
-
-```
-mergerequest/
-├── index.html       # Entire app — UI, styles, and AI logic
-├── api/chat.js      # Hardened Vercel/Groq serverless endpoint
-├── Images/          # Profile photo, project assets, and SVG architecture diagrams
-├── favicon.svg      # Terminal-style site icon
-├── .github/workflows/ci.yml # HTML and link validation
-├── project.md       # Detailed project documentation
-└── README.md
+```text
+Browser -> /api/chat (Vercel serverless function) -> Groq
 ```
 
----
+The browser sends the conversation to `/api/chat`. The Vercel function sends it to Groq and returns the AI response.
 
-## Getting Started
+## Security notes
 
-### 1. Clone the repo
+- `GROQ_API_KEY` is used only on the server as a Vercel environment variable.
+- The API allows 10 requests per minute per IP. The limit is in memory and applies per serverless instance.
+- Each message is limited to 1000 characters.
+- Only the last 12 messages are sent upstream.
+- The system prompt is limited to 20,000 characters.
+- Chat text is rendered safely as text, not as HTML.
+
+## Run locally
 
 ```bash
 git clone https://github.com/Dakshinab/mergerequest.git
 cd mergerequest
+vercel dev
 ```
 
-### 2. Configure your Groq API key
+Set `GROQ_API_KEY` as a Vercel environment variable before using the chat.
 
-For local development, set the `GROQ_API_KEY` environment variable. For Vercel,
-open **Project Settings → Environment Variables**, add a variable named
-`GROQ_API_KEY`, and paste the key from [console.groq.com](https://console.groq.com).
-The Groq free tier is sufficient for this app.
+Opening `index.html` directly will show the page, but the chat will not work because `/api/chat` needs the Vercel function.
 
-### 3. Add your photo
+## Deploy
 
-Place your profile photo in the `Images/` folder and name it `dakshina.jpeg`. The app will display it automatically.
+Connect this repository to Vercel and add `GROQ_API_KEY` as a Vercel environment variable.
 
-### 4. Open locally
+## CI
 
-```bash
-# No build needed — just open in browser
-open index.html
-```
+`.github/workflows/ci.yml` runs on pushes and pull requests. It:
 
-If you are on Windows, open `index.html` directly in your browser or double-click the file in File Explorer.
+- Checks `index.html` with `html-validate`
+- Checks links and referenced assets with `linkinator`
 
----
+## How to update
 
-## Deploy to Vercel
-
-```bash
-# Install Vercel CLI
-npm install -g vercel
-
-# Deploy from project root
-vercel
-
-# Follow the prompts — your site goes live in under a minute
-```
-
-Or connect your GitHub repo directly at [vercel.com/new](https://vercel.com/new) for automatic deployments on every push.
-
-> **Security note:** The API key is read only by `api/chat.js` and is never exposed
-> in the client bundle. See the [Vercel Environment Variables docs](https://vercel.com/docs/environment-variables) for setup.
-
----
-
-## Customising for Yourself
-
-All personal data lives in two places inside `index.html`:
-
-1. **`SYSTEM_PROMPT`** — the AI's knowledge base. Update your name, experience, projects, and skills here.
-2. **HTML sections** — the visible skills grid, project cards, and experience items.
-
-Search for `ABOUT DAKSHINA` in the file to find the AI context block. The current asset paths also live under `Images/`.
-
----
-
-## Built by
-
-**Dakshina Dissanayake** — Junior DevOps Engineer
-
-[LinkedIn](https://www.linkedin.com/in/dakshina-dissanayake-301162227) · [GitHub](https://github.com/Dakshinab) · [dakshinabanu@gmail.com](mailto:dakshinabanu@gmail.com)
+- Replace `Dakshina_Dissanayake_DevOps_CV.pdf` to update the CV.
+- Update the visible page text and `SYSTEM_PROMPT` together.
+- For every new DevOps project, add a project card and a new architecture SVG in `Images/`.
