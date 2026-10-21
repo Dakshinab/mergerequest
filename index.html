@@ -1433,7 +1433,7 @@
       <span>Add your photo<br><small style="font-size:11px;color:var(--text-muted)">Add Images/dakshina.jpeg</small></span>
     </div>
   </div>
-  <div class="pipeline-strip" aria-label="Animated DevOps deployment pipeline">
+  <div class="pipeline-strip" role="group" aria-label="Animated DevOps deployment pipeline">
     <div class="pipeline-heading"><span class="status-dot"></span> pipeline: passing</div>
     <div class="pipeline-stages" id="pipeline-stages">
       <div class="pipeline-progress" id="pipeline-progress"></div>
@@ -1495,7 +1495,7 @@
     <div class="hero-stat"><strong>OIDC</strong><span>Keyless AWS deploys from GitHub Actions</span></div>
     <div class="hero-stat"><strong>~$0</strong><span>Cloud spend using AWS Free Tier</span></div>
   </div>
-  <div class="tool-marquee" aria-label="DevOps tools">
+  <div class="tool-marquee" role="group" aria-label="DevOps tools">
     <div class="tool-marquee-track">
       <span class="tool-chip">AWS</span><span class="tool-chip">Terraform</span><span class="tool-chip">Docker</span><span class="tool-chip">Kubernetes</span><span class="tool-chip">GitHub Actions</span><span class="tool-chip">Prometheus</span><span class="tool-chip">Grafana</span><span class="tool-chip">Trivy</span><span class="tool-chip">Linux</span>
       <span class="tool-chip" aria-hidden="true">AWS</span><span class="tool-chip" aria-hidden="true">Terraform</span><span class="tool-chip" aria-hidden="true">Docker</span><span class="tool-chip" aria-hidden="true">Kubernetes</span><span class="tool-chip" aria-hidden="true">GitHub Actions</span><span class="tool-chip" aria-hidden="true">Prometheus</span><span class="tool-chip" aria-hidden="true">Grafana</span><span class="tool-chip" aria-hidden="true">Trivy</span><span class="tool-chip" aria-hidden="true">Linux</span>
@@ -1655,7 +1655,7 @@
 
   </div>
 
-  <div class="extra-projects" id="extra-projects" aria-hidden="true">
+  <div class="extra-projects" id="extra-projects" inert>
     <div>
       <div class="projects-list">
     <!-- 4: image right -->
@@ -1806,18 +1806,18 @@
       </div>
     </div>
     <div class="chat-suggestions" id="suggestions">
-      <button class="suggestion-chip" onclick="askSuggestion(this)">What DevOps projects has he built?</button>
-      <button class="suggestion-chip" onclick="askSuggestion(this)">Does he know Kubernetes?</button>
-      <button class="suggestion-chip" onclick="askSuggestion(this)">How does his CI/CD pipeline work?</button>
-      <button class="suggestion-chip" onclick="askSuggestion(this)">What did he do at Codezela?</button>
-      <button class="suggestion-chip" onclick="askSuggestion(this)">Is he available now?</button>
+        <button type="button" class="suggestion-chip" onclick="askSuggestion(this)">What DevOps projects has he built?</button>
+        <button type="button" class="suggestion-chip" onclick="askSuggestion(this)">Does he know Kubernetes?</button>
+        <button type="button" class="suggestion-chip" onclick="askSuggestion(this)">How does his CI/CD pipeline work?</button>
+        <button type="button" class="suggestion-chip" onclick="askSuggestion(this)">What did he do at Codezela?</button>
+        <button type="button" class="suggestion-chip" onclick="askSuggestion(this)">Is he available now?</button>
     </div>
     <div class="chat-input-row">
       <div class="chat-input-wrap">
         <textarea class="chat-input" id="chat-input" rows="1" placeholder=" " aria-label="Ask about experience, skills, or availability"></textarea>
         <div class="chat-input-hint" aria-hidden="true"><span>Ask</span><span>about</span><span>experience,</span><span>skills,</span><span>availability...</span></div>
       </div>
-      <button class="chat-send" id="send-btn" onclick="sendMessage()">
+      <button type="button" class="chat-send" id="send-btn" aria-label="Send message" onclick="sendMessage()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       </button>
     </div>
@@ -2153,7 +2153,7 @@ projectsToggle.addEventListener('click', () => {
   projectsToggle.setAttribute('aria-expanded', String(!isExpanded));
   projectsToggle.textContent = isExpanded ? 'Show more projects' : 'Show fewer projects';
   extraProjects.classList.toggle('is-expanded', !isExpanded);
-  extraProjects.setAttribute('aria-hidden', String(isExpanded));
+  extraProjects.inert = isExpanded;
 
   if (!isExpanded) {
     extraProjects.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
