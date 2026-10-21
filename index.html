@@ -872,98 +872,115 @@
   /* SKILLS */
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 20px;
   }
 
   .skill-group {
-    background: linear-gradient(180deg, rgba(17, 19, 24, 0.92), rgba(17, 19, 24, 0.98));
-    border: 1px solid rgba(37, 43, 53, 0.9);
-    border-radius: 24px;
-    padding: 1.25rem;
-    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.18);
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    background: #111318;
+    border: 1px solid #1f252d;
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s ease;
   }
-
-  .skill-group::before {
-    content: '';
-    position: absolute;
-    inset: auto -20% -55% -20%;
-    height: 140px;
-    background: radial-gradient(circle, rgba(0, 208, 132, 0.16), transparent 68%);
-    opacity: 0;
-    transform: scale(0.9);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    pointer-events: none;
-  }
-
-  .skill-group::after {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    font-family: var(--mono);
-    font-size: 26px;
-    line-height: 1;
-    color: var(--green);
-    opacity: 0.08;
-    pointer-events: none;
-    animation: skill-float 7s ease-in-out infinite;
-  }
-
-  .skills-grid .skill-group:nth-child(1)::after { content: '{}'; }
-  .skills-grid .skill-group:nth-child(2)::after { content: '</>'; }
-  .skills-grid .skill-group:nth-child(3)::after { content: 'CI'; }
-  .skills-grid .skill-group:nth-child(4)::after { content: 'DB'; }
 
   .skill-group:hover {
-    transform: translateY(-6px);
-    border-color: rgba(0, 208, 132, 0.45);
-    box-shadow: 0 24px 46px rgba(0, 0, 0, 0.24);
-  }
-
-  .skill-group:hover::before {
-    opacity: 1;
-    transform: scale(1);
+    border-color: var(--green);
   }
 
   .skill-group-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 11px;
     font-family: var(--mono);
     color: var(--green);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    margin-bottom: 1rem;
+  }
+
+  .skill-group-label svg {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    stroke: var(--green);
   }
 
   .skill-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    align-content: flex-start;
+    gap: 8px;
+    list-style: none;
   }
 
   .skill-tag {
+    display: inline-flex;
+    align-items: center;
+    height: 32px;
     background: var(--surface-2);
     border: 1px solid var(--border-light);
     border-radius: 8px;
-    padding: 4px 10px;
-    font-size: 12px;
+    padding: 0 12px;
+    font: 13px var(--mono);
     color: var(--text-secondary);
-    font-family: var(--mono);
-    transition: transform 0.15s ease, border-color 0.15s ease, color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
-    animation: tag-float 2.8s ease-in-out infinite;
+    white-space: nowrap;
+    transition: border-color 0.15s ease;
   }
 
-  .skill-tag:nth-child(3n + 2) { animation-delay: -0.9s; }
-  .skill-tag:nth-child(3n) { animation-delay: -1.8s; }
-
   .skill-tag:hover {
-    transform: translateY(-2px);
-    border-color: var(--green-border);
-    background: rgba(0, 208, 132, 0.09);
-    color: var(--text);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+    border-color: var(--green);
+  }
+
+  .skills-secondary {
+    grid-column: 1 / -1;
+    margin-top: 20px;
+    border-color: #252b35;
+  }
+
+  .skills-secondary .skill-group-label {
+    color: var(--text-secondary);
+  }
+
+  .skills-secondary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .skills-secondary-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .skills-secondary-group h4 {
+    color: var(--text-muted);
+    font: 11px var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 1024px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .skills-secondary-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* PROJECTS — alternating left/right layout */
@@ -1157,6 +1174,10 @@
     background: rgba(0, 208, 132, 0.08);
   }
 
+  #learning-toggle {
+    margin-top: 1rem;
+  }
+
   /* EXPERIENCE */
   .exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
 
@@ -1296,15 +1317,6 @@
     }
     100% {
       transform: translateY(8px);
-    }
-  }
-
-  @keyframes skill-float {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-4px);
     }
   }
 
@@ -1490,7 +1502,7 @@
     <div class="pipeline-log" id="pipeline-log" aria-live="polite"></div>
   </div>
   <div class="hero-stats">
-    <div class="hero-stat"><strong>4</strong><span>DevOps projects built end to end</span></div>
+    <div class="hero-stat"><strong>5+</strong><span>DevOps projects built end to end</span></div>
     <div class="hero-stat"><strong>6 mo</strong><span>DevOps internship</span></div>
     <div class="hero-stat"><strong>OIDC</strong><span>Keyless AWS deploys from GitHub Actions</span></div>
     <div class="hero-stat"><strong>~$0</strong><span>Cloud spend using AWS Free Tier</span></div>
@@ -1510,50 +1522,38 @@
   <div class="section-label reveal">DevOps toolkit</div>
   <div class="section-title reveal">Skills</div>
   <div class="skills-grid">
-    <div class="skill-group reveal">
-      <div class="skill-group-label">Cloud</div>
-      <div class="skill-tags">
-        <span class="skill-tag">AWS</span><span class="skill-tag">EC2</span><span class="skill-tag">VPC</span><span class="skill-tag">IAM</span><span class="skill-tag">S3</span><span class="skill-tag">ECR</span><span class="skill-tag">RDS</span><span class="skill-tag">SQS</span><span class="skill-tag">Amplify</span><span class="skill-tag">SSM Parameter Store</span><span class="skill-tag">CloudWatch</span><span class="skill-tag">Vercel</span>
+    <article class="skill-group reveal">
+      <h3 class="skill-group-label"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18h10a4 4 0 0 0 .5-7.97A5.5 5.5 0 0 0 7 8.5a4.75 4.75 0 0 0 0 9.5Z"/></svg>Cloud</h3>
+      <ul class="skill-tags"><li class="skill-tag">AWS</li><li class="skill-tag">EC2</li><li class="skill-tag">VPC</li><li class="skill-tag">IAM</li><li class="skill-tag">S3</li><li class="skill-tag">ECR</li><li class="skill-tag">RDS</li><li class="skill-tag">SQS</li><li class="skill-tag">Amplify</li><li class="skill-tag">SSM Parameter Store</li><li class="skill-tag">Vercel</li></ul>
+    </article>
+    <article class="skill-group reveal">
+      <h3 class="skill-group-label"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg>Infrastructure and Containers</h3>
+      <ul class="skill-tags"><li class="skill-tag">Terraform (modular)</li><li class="skill-tag">Docker</li><li class="skill-tag">Kubernetes (k3s, kind)</li></ul>
+    </article>
+    <article class="skill-group reveal">
+      <h3 class="skill-group-label"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="18" cy="12" r="2"/><circle cx="6" cy="19" r="2"/><path d="M8 5h4a4 4 0 0 1 4 4v1M8 19h4a4 4 0 0 0 4-4v-1"/></svg>CI/CD and Security</h3>
+      <ul class="skill-tags"><li class="skill-tag">GitHub Actions (OIDC)</li><li class="skill-tag">Deployment Automation</li><li class="skill-tag">Rollout and Rollback</li><li class="skill-tag">Trivy</li></ul>
+    </article>
+    <article class="skill-group reveal">
+      <h3 class="skill-group-label"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Monitoring</h3>
+      <ul class="skill-tags"><li class="skill-tag">Prometheus</li><li class="skill-tag">Grafana</li><li class="skill-tag">CloudWatch</li><li class="skill-tag">Uptime Kuma</li><li class="skill-tag">Logging</li></ul>
+    </article>
+    <article class="skill-group reveal">
+      <h3 class="skill-group-label"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 17 4-4-4-4M10 19h5"/></svg>Linux, Scripting and Networking</h3>
+      <ul class="skill-tags"><li class="skill-tag">Linux (Ubuntu, WSL2)</li><li class="skill-tag">Bash</li><li class="skill-tag">Python</li><li class="skill-tag">YAML</li><li class="skill-tag">Nginx</li><li class="skill-tag">Git</li><li class="skill-tag">GitHub</li><li class="skill-tag">DNS</li><li class="skill-tag">HTTP/HTTPS</li></ul>
+    </article>
+    <article class="skill-group reveal">
+      <h3 class="skill-group-label"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20.59 13.41-9.58-9.58V3H4v7h.83l9.58 9.59a2 2 0 0 0 2.83 0l3.35-3.35a2 2 0 0 0 0-2.83Z"/><circle cx="7.5" cy="6.5" r=".75"/></svg>Cost Management</h3>
+      <ul class="skill-tags"><li class="skill-tag">AWS Free Tier optimization</li><li class="skill-tag">Right-sizing</li><li class="skill-tag">Budget-aware architecture</li></ul>
+    </article>
+    <article class="skill-group skills-secondary reveal">
+      <h3 class="skill-group-label">Also builds with</h3>
+      <div class="skills-secondary-grid">
+        <div class="skills-secondary-group"><h4>Languages</h4><ul class="skill-tags"><li class="skill-tag">Python (Flask)</li><li class="skill-tag">Java (Spring Boot)</li><li class="skill-tag">JavaScript / TypeScript (Next.js)</li><li class="skill-tag">SQL</li></ul></div>
+        <div class="skills-secondary-group"><h4>Frameworks</h4><ul class="skill-tags"><li class="skill-tag">React</li><li class="skill-tag">React Native</li><li class="skill-tag">Expo</li><li class="skill-tag">Node.js</li><li class="skill-tag">Express</li><li class="skill-tag">Prisma</li><li class="skill-tag">Tailwind CSS</li></ul></div>
+        <div class="skills-secondary-group"><h4>Databases</h4><ul class="skill-tags"><li class="skill-tag">PostgreSQL</li><li class="skill-tag">MySQL</li><li class="skill-tag">MongoDB</li><li class="skill-tag">SQLite</li><li class="skill-tag">Firebase</li><li class="skill-tag">Supabase</li></ul></div>
       </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-label">Infrastructure as Code</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Terraform (modular)</span>
-      </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-label">CI/CD and Security</div>
-      <div class="skill-tags">
-        <span class="skill-tag">GitHub Actions (OIDC)</span><span class="skill-tag">Deployment Automation</span><span class="skill-tag">Rollout and Rollback</span><span class="skill-tag">Trivy</span>
-      </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-label">Containers and Orchestration</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Docker</span><span class="skill-tag">Kubernetes (k3s, kind)</span>
-      </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-label">Monitoring</div>
-      <div class="skill-tags"><span class="skill-tag">Prometheus</span><span class="skill-tag">Grafana</span><span class="skill-tag">CloudWatch</span><span class="skill-tag">Uptime Kuma</span><span class="skill-tag">Logging</span></div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-label">Linux and Scripting</div>
-      <div class="skill-tags"><span class="skill-tag">Linux (Ubuntu, WSL2)</span><span class="skill-tag">Bash</span><span class="skill-tag">Python</span><span class="skill-tag">YAML</span><span class="skill-tag">Nginx</span></div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-label">Version Control and Networking</div>
-      <div class="skill-tags"><span class="skill-tag">Git</span><span class="skill-tag">GitHub</span><span class="skill-tag">DNS</span><span class="skill-tag">HTTP/HTTPS</span></div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-label">Cost management</div>
-      <div class="skill-tags"><span class="skill-tag">AWS Free Tier optimization</span><span class="skill-tag">Right-sizing</span><span class="skill-tag">Budget-aware architecture</span></div>
-    </div>
-    <div class="skill-group reveal skill-group-secondary">
-      <div class="skill-group-label">Also builds with</div>
-      <div class="skill-tags"><span class="skill-tag">Python (Flask)</span><span class="skill-tag">Java (Spring Boot)</span><span class="skill-tag">JavaScript / TypeScript (Next.js)</span><span class="skill-tag">SQL</span><span class="skill-tag">React</span><span class="skill-tag">React Native</span><span class="skill-tag">Expo</span><span class="skill-tag">Node.js</span><span class="skill-tag">Express</span><span class="skill-tag">Prisma</span><span class="skill-tag">Tailwind CSS</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">MySQL</span><span class="skill-tag">MongoDB</span><span class="skill-tag">SQLite</span><span class="skill-tag">Firebase</span><span class="skill-tag">Supabase</span></div>
-    </div>
+    </article>
   </div>
 </section>
 
@@ -1590,7 +1590,6 @@
 
     <!-- 2: image right -->
     <div class="project-row reverse reveal">
-      <!-- TODO: Add the verified DeployFlow GitHub URL before adding its hidden GitHub button. -->
       <div class="project-img-wrap">
         <img src="Images/deployflow.svg" alt="DeployFlow pipeline from GitHub Actions with Trivy to an AWS EC2 Flask container, monitored by Prometheus, Grafana, and CloudWatch." loading="lazy" width="1200" height="750" />
       </div>
@@ -1607,11 +1606,13 @@
         <div class="project-stack">
           <span class="stack-tag">AWS</span><span class="stack-tag">Terraform</span><span class="stack-tag">Docker</span><span class="stack-tag">Flask</span><span class="stack-tag">GitHub Actions</span><span class="stack-tag">Trivy</span><span class="stack-tag">Prometheus</span><span class="stack-tag">Grafana</span><span class="stack-tag">CloudWatch</span>
         </div>
+        <a class="project-link" href="https://github.com/Dakshinab/DeployFlow-DevOps" target="_blank" rel="noopener noreferrer">GitHub
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
       </div>
     </div>
 
     <div class="project-row reveal">
-      <!-- TODO: Add the verified CloudPath GitHub URL before adding its hidden GitHub button. -->
       <div class="project-img-wrap">
         <img src="Images/cloudpath.svg" alt="CloudPath pipeline from GitHub Actions and Trivy to a kind Kubernetes cluster with a Namespace, ConfigMap, Secret, Deployment, Service, and operational tooling." loading="lazy" width="1200" height="750" />
       </div>
@@ -1628,6 +1629,9 @@
         <div class="project-stack">
           <span class="stack-tag">Kubernetes</span><span class="stack-tag">kind</span><span class="stack-tag">Docker</span><span class="stack-tag">Spring Boot</span><span class="stack-tag">GitHub Actions</span><span class="stack-tag">Trivy</span><span class="stack-tag">Terraform</span>
         </div>
+        <a class="project-link" href="https://github.com/Dakshinab/cloudpath-devops" target="_blank" rel="noopener noreferrer">GitHub
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
       </div>
     </div>
 
@@ -1894,12 +1898,14 @@ DEVOPS PROJECTS:
    - Built GitHub Actions delivery with version tags, Trivy scanning, and automatic AWS deployment
    - Added Prometheus, Grafana, and CloudWatch CPU and memory monitoring
    - Managed AWS Free Tier resources and kept total project spend near $0
+   - Repository: https://github.com/Dakshinab/DeployFlow-DevOps
 
 3. CloudPath: CI/CD and Kubernetes Deployment Pipeline
    - Containerized a Spring Boot API with a non-root Docker user and .dockerignore
    - Deployed Namespace, ConfigMap, Secret, Deployment, and Service resources to kind
    - Built GitHub Actions checks for tests, builds, Docker image creation, and Trivy scanning
    - Tested rollout and rollback and documented that kubectl rollout undo does not revert ConfigMap changes
+   - Repository: https://github.com/Dakshinab/cloudpath-devops
    - Verified Terraform init, fmt, validate, and plan from scratch at zero cloud cost
 
 4. Serene Stay: AWS Well-Architected Hotel Booking App
