@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img">
+  <title>DeployFlow AWS CI/CD architecture</title>
+  <desc>GitHub Actions builds and scans a Flask container with Trivy before deploying it to AWS EC2. Prometheus, Grafana, and CloudWatch provide observability.</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 8 4 0 8Z" fill="#00d084"/></marker><style>text{font-family:'JetBrains Mono',monospace;font-size:16px;fill:#e6e8eb}.muted{fill:#8b929b;font-size:14px}.box{fill:#111318;stroke:#1f252d}.group{fill:none;stroke:#00d084;stroke-dasharray:8 7}.line{stroke:#00d084;stroke-width:2;fill:none;marker-end:url(#arrow)}</style></defs>
+  <rect width="1200" height="750" fill="#0a0c0f"/><text x="45" y="50" fill="#00d084">deployflow / automated delivery</text>
+  <rect class="box" x="40" y="105" width="130" height="64" rx="12"/><text x="65" y="143">Developer</text><rect class="box" x="205" y="105" width="130" height="64" rx="12"/><text x="226" y="143">git push</text>
+  <rect class="group" x="370" y="80" width="310" height="115" rx="12"/><text x="395" y="110" fill="#00d084">GitHub Actions</text><rect class="box" x="395" y="125" width="75" height="48" rx="8"/><text class="muted" x="408" y="155">build</text><rect class="box" x="485" y="125" width="75" height="48" rx="8"/><text class="muted" x="500" y="155">Trivy</text><rect class="box" x="575" y="125" width="75" height="48" rx="8"/><text class="muted" x="588" y="155">deploy</text>
+  <path class="line" d="M170 137h35M335 137h35"/>
+  <rect class="group" x="40" y="250" width="650" height="250" rx="12"/><text x="65" y="282" fill="#00d084">AWS</text><rect class="box" x="90" y="330" width="220" height="80" rx="12"/><text x="145" y="365">EC2</text><text class="muted" x="113" y="392">Flask API container</text><rect class="box" x="390" y="330" width="220" height="80" rx="12"/><text x="435" y="365">CloudWatch</text><text class="muted" x="440" y="392">CPU / memory alarms</text><path class="line" d="M530 195v90H200v45"/>
+  <rect class="box" x="755" y="250" width="180" height="70" rx="12"/><text x="805" y="292">Prometheus</text><rect class="box" x="970" y="250" width="180" height="70" rx="12"/><text x="1010" y="292">Grafana</text><path class="line" d="M935 285h35"/><path class="line" d="M610 370h145"/>
+  <rect class="box" x="40" y="615" width="1110" height="70" rx="12"/><text x="70" y="645" fill="#00d084">Terraform</text><text class="muted" x="200" y="645">EC2 · VPC · IAM · S3</text>
+</svg>

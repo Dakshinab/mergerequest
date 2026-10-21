@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MergeRequest &mdash; Dakshina Dissanayake</title>
+<title>Dakshina Dissanayake | Junior DevOps Engineer</title>
+<meta name="description" content="Junior DevOps Engineer. I build CI/CD pipelines and cloud infrastructure on AWS with Terraform, Docker, Kubernetes, and GitHub Actions." />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<meta property="og:title" content="Dakshina Dissanayake | Junior DevOps Engineer" />
+<meta property="og:description" content="Junior DevOps Engineer building CI/CD pipelines and cloud infrastructure on AWS with Terraform, Docker, Kubernetes, and GitHub Actions." />
+<meta property="og:image" content="https://mergerequest.vercel.app/Images/dakshina.jpeg" />
+<meta property="og:type" content="website" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -24,7 +30,7 @@
     --text-muted: #4a5260;
     --mono: 'JetBrains Mono', monospace;
     --sans: 'Inter', sans-serif;
-    --radius: 10px;
+    --radius: 12px;
   }
 
   html { scroll-behavior: smooth; }
@@ -300,7 +306,7 @@
     z-index: 2;
     padding: 7px 10px;
     border: 1px solid rgba(0, 208, 132, 0.40);
-    border-radius: 999px;
+    border-radius: 8px;
     background: rgba(10, 12, 15, 0.78);
     backdrop-filter: blur(8px);
     color: var(--green);
@@ -340,7 +346,7 @@
     gap: 6px;
     background: var(--green-dim);
     border: 1px solid var(--green-border);
-    border-radius: 100px;
+    border-radius: 8px;
     padding: 4px 12px;
     font-size: 12px;
     color: var(--green);
@@ -353,6 +359,207 @@
     background: var(--green);
     border-radius: 50%;
     animation: pulse 2s infinite;
+  }
+
+  /* DEVOPS HERO */
+  .hero {
+    min-height: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 390px;
+    align-items: center;
+    max-width: 1200px;
+    gap: 4rem;
+    padding-top: 8rem;
+    padding-bottom: 3rem;
+  }
+
+  .hero-left { max-width: 650px; }
+  .hero-eyebrow { margin-bottom: 1rem; }
+  .hero h1 { font-size: clamp(2.6rem, 5vw, 4.2rem); }
+  .hero-title { margin-bottom: 1.25rem; }
+  .hero-desc { max-width: 620px; margin-bottom: 2rem; }
+  .hero-actions .btn-primary,
+  .hero-actions .btn-secondary { animation: none; }
+  .hero-actions .btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid transparent;
+  }
+  .hero-actions .btn-ghost:hover {
+    color: var(--green);
+    border-color: var(--green-border);
+  }
+
+  .hero-photo {
+    width: 390px;
+    height: 500px;
+    border-radius: 16px;
+  }
+
+  .photo-badge {
+    border-radius: 8px;
+  }
+
+  .pipeline-strip {
+    grid-column: 1 / -1;
+    background: linear-gradient(180deg, rgba(17, 19, 24, 0.96), rgba(17, 19, 24, 0.88));
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+  }
+
+  .pipeline-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--green);
+    font: 500 11px var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.1rem;
+  }
+
+  .pipeline-stages {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    position: relative;
+  }
+
+  .pipeline-stages::before {
+    content: '';
+    position: absolute;
+    top: 22px;
+    left: 5%;
+    right: 5%;
+    height: 2px;
+    background: var(--border-light);
+    z-index: 0;
+  }
+
+  .pipeline-progress {
+    position: absolute;
+    top: 22px;
+    left: 5%;
+    width: 0;
+    height: 2px;
+    background: var(--green);
+    z-index: 1;
+    transition: width 0.35s ease;
+  }
+
+  .pipeline-stage {
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font: 500 11px var(--mono);
+    text-align: center;
+  }
+
+  .stage-box {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  }
+
+  .stage-box svg { width: 18px; height: 18px; }
+  .pipeline-stage.is-running { color: var(--green); }
+  .pipeline-stage.is-running .stage-box {
+    border-color: var(--green);
+    color: var(--green);
+  }
+  .pipeline-stage.is-running .stage-box svg {
+    animation: pipeline-spin 1s linear infinite;
+  }
+  .pipeline-stage.is-passed { color: var(--text); }
+  .pipeline-stage.is-passed .stage-box {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--bg);
+  }
+  .stage-check { display: none; }
+  .pipeline-stage.is-passed .stage-icon { display: none; }
+  .pipeline-stage.is-passed .stage-check { display: block; }
+
+  .pipeline-log {
+    min-height: 8.2rem;
+    margin-top: 1.25rem;
+    padding: 1rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font: 12px/1.75 var(--mono);
+    white-space: pre-wrap;
+  }
+  .pipeline-log .log-ok { color: var(--green); }
+
+  .hero-stats {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .hero-stat {
+    padding: 1rem;
+    border-left: 2px solid var(--green-border);
+    background: rgba(17, 19, 24, 0.55);
+  }
+  .hero-stat strong {
+    display: block;
+    color: var(--green);
+    font: 600 1.35rem var(--mono);
+  }
+  .hero-stat span {
+    display: block;
+    margin-top: 4px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .tool-marquee {
+    grid-column: 1 / -1;
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.8rem 0;
+  }
+  .tool-marquee-track {
+    display: flex;
+    width: max-content;
+    gap: 10px;
+    animation: tool-marquee 28s linear infinite;
+  }
+  .tool-marquee:hover .tool-marquee-track { animation-play-state: paused; }
+  .tool-chip {
+    padding: 6px 10px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font: 500 11px var(--mono);
+    white-space: nowrap;
+  }
+
+  @keyframes pipeline-spin { to { transform: rotate(360deg); } }
+  @keyframes tool-marquee { to { transform: translateX(-50%); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tool-marquee-track { animation: none; }
+    .pipeline-stage.is-running .stage-box svg { animation: none; }
+    .pipeline-progress { transition: none; }
   }
 
   @keyframes pulse {
@@ -452,7 +659,7 @@
     width: 32px; height: 32px;
     background: var(--green-dim);
     border: 1px solid var(--green-border);
-    border-radius: 999px;
+    border-radius: 8px;
     display: flex; align-items: center; justify-content: center;
     font-family: var(--mono);
     font-size: 12px;
@@ -569,7 +776,7 @@
   .suggestion-chip {
     background: transparent;
     border: 1px solid var(--border-light);
-    border-radius: 100px;
+    border-radius: 8px;
     padding: 6px 14px;
     font-size: 12px;
     color: var(--text-secondary);
@@ -707,7 +914,7 @@
 
   .skills-grid .skill-group:nth-child(1)::after { content: '{}'; }
   .skills-grid .skill-group:nth-child(2)::after { content: '</>'; }
-  .skills-grid .skill-group:nth-child(3)::after { content: '☁'; }
+  .skills-grid .skill-group:nth-child(3)::after { content: 'CI'; }
   .skills-grid .skill-group:nth-child(4)::after { content: 'DB'; }
 
   .skill-group:hover {
@@ -739,7 +946,7 @@
   .skill-tag {
     background: var(--surface-2);
     border: 1px solid var(--border-light);
-    border-radius: 999px;
+    border-radius: 8px;
     padding: 4px 10px;
     font-size: 12px;
     color: var(--text-secondary);
@@ -766,7 +973,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     border: 1px solid rgba(37, 43, 53, 0.9);
-    border-radius: 28px;
+    border-radius: 12px;
     overflow: hidden;
     background: linear-gradient(180deg, rgba(17, 19, 24, 0.94), rgba(17, 19, 24, 0.98));
     transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
@@ -819,10 +1026,19 @@
   .project-type { font-family: var(--mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; }
   .project-name { font-size: 18px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; line-height: 1.2; }
   .project-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+  .project-bullets {
+    display: grid;
+    gap: 7px;
+    padding-left: 1.1rem;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.55;
+  }
+  .project-bullets li::marker { color: var(--green); }
   .project-stack { display: flex; flex-wrap: wrap; gap: 5px; }
   .stack-tag {
     background: rgba(10, 12, 15, 0.6); border: 1px solid var(--border);
-    border-radius: 999px; padding: 3px 10px;
+    border-radius: 8px; padding: 3px 10px;
     font-size: 11px; color: var(--text-muted); font-family: var(--mono);
     transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
   }
@@ -921,7 +1137,7 @@
     align-items: center;
     gap: 6px;
     padding: 8px 12px;
-    border-radius: 999px;
+    border-radius: 8px;
     border: 1px solid var(--border-light);
     background: rgba(24, 28, 34, 0.9);
     color: var(--text-secondary);
@@ -1130,11 +1346,22 @@
       flex-shrink: 0;
       margin-left: auto;
     }
-    .hero { flex-direction: column; gap: 2rem; padding-top: 80px; padding-bottom: 3.5rem; text-align: center; }
+    .hero { display: grid; grid-template-columns: 1fr; gap: 2rem; padding-top: 80px; padding-bottom: 3.5rem; text-align: center; }
+    .hero-left { max-width: none; }
     .hero-photo { width: 250px; height: 320px; }
     .photo-badge { font-size: 9px; padding: 6px 8px; }
     .hero-actions { justify-content: center; }
     .hero-eyebrow { justify-content: center; }
+    .hero-desc { margin-left: auto; margin-right: auto; }
+    .pipeline-strip { text-align: left; }
+    .pipeline-stages { grid-template-columns: 1fr; gap: 0; padding-left: 1rem; }
+    .pipeline-stages::before,
+    .pipeline-progress { top: 5%; bottom: 5%; left: 23px; width: 2px; height: 0; }
+    .pipeline-progress { transition: height 0.35s ease; }
+    .pipeline-stage { min-height: 58px; flex-direction: row; text-align: left; gap: 12px; }
+    .stage-box { width: 46px; flex-shrink: 0; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); text-align: left; }
+    .tool-marquee { text-align: left; }
     .menu-toggle { display: inline-flex; }
     nav ul {
       display: none;
@@ -1171,11 +1398,11 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
   </button>
   <ul id="nav-links">
-    <li><a href="#chat-section">Ask AI</a></li>
-    <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#chat-section">Ask AI</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -1185,133 +1412,147 @@
   <div class="hero-left">
     <div class="status-badge">
       <span class="status-dot"></span>
-      Open to opportunities
+      Open to DevOps roles
     </div>
-    <div class="hero-eyebrow">Software Engineer &middot; DevOps Engineer</div>
-    <h1>Dakshina<br>Dissanayake</h1>
-    <p class="hero-title">Full Stack &middot; Cloud &middot; AI</p>
-    <p class="hero-desc">
-      Final-year IT undergraduate at Horizon Campus (GPA 3.5) with hands-on internship experience at Codezela Technologies and I4matrix. I build and ship real products &mdash; from cloud-native DevOps pipelines to AI-powered mobile apps.
-    </p>
+    <div class="hero-eyebrow">Junior DevOps Engineer</div>
+    <h1>Dakshina<br />Dissanayake</h1>
+    <p class="hero-title">AWS &middot; Terraform &middot; Kubernetes &middot; CI/CD</p>
+    <p class="hero-desc">I build CI/CD pipelines and cloud infrastructure that ship safely: image scans on every push, keyless AWS access, and near-zero cloud cost.</p>
     <div class="hero-actions">
-      <a href="#chat-section" class="btn-primary">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        Ask my AI agent
-      </a>
-      <a href="#contact" class="btn-secondary">Contact me</a>
+      <a href="#projects" class="btn-primary">View DevOps projects</a>
+      <a href="/Dakshina_Dissanayake_DevOps_CV.pdf" class="btn-secondary" target="_blank" rel="noopener" download>Download CV</a>
+      <a href="#chat-section" class="btn-secondary btn-ghost">Ask my AI agent</a>
     </div>
   </div>
   <div class="hero-photo">
     <img src="Images/dakshina.jpeg" alt="Dakshina Dissanayake" id="profile-photo" />
-    <span class="photo-badge photo-badge-top">Available now</span>
+    <span class="photo-badge photo-badge-top">Open to roles</span>
     <span class="photo-badge photo-badge-bottom">AWS &middot; Terraform &middot; CI/CD</span>
     <div class="photo-placeholder" id="photo-placeholder">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
       <span>Add your photo<br><small style="font-size:11px;color:var(--text-muted)">Add Images/dakshina.jpeg</small></span>
     </div>
   </div>
-</div>
-
-<hr class="section-divider" />
-
-<!-- CHAT -->
-<section id="chat-section">
-  <div class="section-label reveal">AI Agent</div>
-  <div class="section-title reveal">Ask anything about me</div>
-  <div class="chat-wrap reveal">
-    <div class="chat-header">
-      <div class="chat-avatar">MR</div>
-      <div class="chat-header-info">
-        <p>MergeRequest Agent</p>
-        <span>Powered by Groq &middot; LLaMA 3.3 70B</span>
-      </div>
-    </div>
-    <div class="chat-messages" id="chat-messages">
-      <div class="msg agent">
-        <div class="msg-icon">MR</div>
-        <div class="msg-bubble">
-          Hi &mdash; I'm Dakshina's AI agent. I know his full background: experience, projects, skills, and what he's looking for. Ask me anything about whether he's a fit for your role.
+  <div class="pipeline-strip" aria-label="Animated DevOps deployment pipeline">
+    <div class="pipeline-heading"><span class="status-dot"></span> pipeline: passing</div>
+    <div class="pipeline-stages" id="pipeline-stages">
+      <div class="pipeline-progress" id="pipeline-progress"></div>
+      <div class="pipeline-stage" data-stage="commit">
+        <div class="stage-box">
+          <svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"></circle><path d="M8 12h8M12 8v8"></path></svg>
+          <svg class="stage-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"></path></svg>
         </div>
+        <span>commit</span>
       </div>
-    </div>
-    <div class="chat-suggestions" id="suggestions">
-      <button class="suggestion-chip" onclick="askSuggestion(this)">Does he know Kubernetes?</button>
-      <button class="suggestion-chip" onclick="askSuggestion(this)">What's his DevOps experience?</button>
-      <button class="suggestion-chip" onclick="askSuggestion(this)">Has he built AI apps?</button>
-      <button class="suggestion-chip" onclick="askSuggestion(this)">Tell me about his best project</button>
-      <button class="suggestion-chip" onclick="askSuggestion(this)">Is he available now?</button>
-    </div>
-    <div class="chat-input-row">
-      <div class="chat-input-wrap">
-        <textarea class="chat-input" id="chat-input" rows="1" placeholder=" " aria-label="Ask about experience, skills, or availability"></textarea>
-        <div class="chat-input-hint" aria-hidden="true">
-          <span>Ask</span><span>about</span><span>experience,</span><span>skills,</span><span>availability...</span>
+      <div class="pipeline-stage" data-stage="build">
+        <div class="stage-box">
+          <svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"></path><path d="m4 7.5 8 4.5 8-4.5M12 12v9"></path></svg>
+          <svg class="stage-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"></path></svg>
         </div>
+        <span>build</span>
       </div>
-      <button class="chat-send" id="send-btn" onclick="sendMessage()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-      </button>
+      <div class="pipeline-stage" data-stage="test">
+        <div class="stage-box">
+          <svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 4h12M6 20h12M8 4v4l4 4 4-4V4M8 20v-4l4-4 4 4v4"></path></svg>
+          <svg class="stage-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"></path></svg>
+        </div>
+        <span>test</span>
+      </div>
+      <div class="pipeline-stage" data-stage="trivy scan">
+        <div class="stage-box">
+          <svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 20 6v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3Z"></path><path d="m9 12 2 2 4-4"></path></svg>
+          <svg class="stage-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"></path></svg>
+        </div>
+        <span>trivy scan</span>
+      </div>
+      <div class="pipeline-stage" data-stage="push to ECR">
+        <div class="stage-box">
+          <svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16v13H4zM8 7V4h8v3M8 11h8M8 15h5"></path></svg>
+          <svg class="stage-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"></path></svg>
+        </div>
+        <span>push to ECR</span>
+      </div>
+      <div class="pipeline-stage" data-stage="deploy">
+        <div class="stage-box">
+          <svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19V5M7 10l5-5 5 5M5 19h14"></path></svg>
+          <svg class="stage-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"></path></svg>
+        </div>
+        <span>deploy</span>
+      </div>
+      <div class="pipeline-stage" data-stage="healthy">
+        <div class="stage-box">
+          <svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-6 4 12 2-6h4"></path></svg>
+          <svg class="stage-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"></path></svg>
+        </div>
+        <span>healthy</span>
+      </div>
+    </div>
+    <div class="pipeline-log" id="pipeline-log" aria-live="polite"></div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><strong>4</strong><span>DevOps projects built end to end</span></div>
+    <div class="hero-stat"><strong>6 mo</strong><span>DevOps internship</span></div>
+    <div class="hero-stat"><strong>OIDC</strong><span>Keyless AWS deploys from GitHub Actions</span></div>
+    <div class="hero-stat"><strong>~$0</strong><span>Cloud spend using AWS Free Tier</span></div>
+  </div>
+  <div class="tool-marquee" aria-label="DevOps tools">
+    <div class="tool-marquee-track">
+      <span class="tool-chip">AWS</span><span class="tool-chip">Terraform</span><span class="tool-chip">Docker</span><span class="tool-chip">Kubernetes</span><span class="tool-chip">GitHub Actions</span><span class="tool-chip">Prometheus</span><span class="tool-chip">Grafana</span><span class="tool-chip">Trivy</span><span class="tool-chip">Linux</span>
+      <span class="tool-chip" aria-hidden="true">AWS</span><span class="tool-chip" aria-hidden="true">Terraform</span><span class="tool-chip" aria-hidden="true">Docker</span><span class="tool-chip" aria-hidden="true">Kubernetes</span><span class="tool-chip" aria-hidden="true">GitHub Actions</span><span class="tool-chip" aria-hidden="true">Prometheus</span><span class="tool-chip" aria-hidden="true">Grafana</span><span class="tool-chip" aria-hidden="true">Trivy</span><span class="tool-chip" aria-hidden="true">Linux</span>
     </div>
   </div>
-</section>
+</div>
 
 <hr class="section-divider" />
 
 <!-- SKILLS -->
 <section id="skills">
-  <div class="section-label reveal">Technical skills</div>
-  <div class="section-title reveal">What I work with</div>
+  <div class="section-label reveal">DevOps toolkit</div>
+  <div class="section-title reveal">Skills</div>
   <div class="skills-grid">
     <div class="skill-group reveal">
-      <div class="skill-group-label">Languages</div>
+      <div class="skill-group-label">Cloud</div>
       <div class="skill-tags">
-        <span class="skill-tag">JavaScript</span>
-        <span class="skill-tag">TypeScript</span>
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">Java</span>
-        <span class="skill-tag">PHP</span>
-        <span class="skill-tag">SQL</span>
-        <span class="skill-tag">C++</span>
+        <span class="skill-tag">AWS</span><span class="skill-tag">EC2</span><span class="skill-tag">VPC</span><span class="skill-tag">IAM</span><span class="skill-tag">S3</span><span class="skill-tag">ECR</span><span class="skill-tag">RDS</span><span class="skill-tag">SQS</span><span class="skill-tag">Amplify</span><span class="skill-tag">SSM Parameter Store</span><span class="skill-tag">CloudWatch</span><span class="skill-tag">Vercel</span>
       </div>
     </div>
     <div class="skill-group reveal">
-      <div class="skill-group-label">Frameworks</div>
+      <div class="skill-group-label">Infrastructure as Code</div>
       <div class="skill-tags">
-        <span class="skill-tag">Next.js</span>
-        <span class="skill-tag">React</span>
-        <span class="skill-tag">React Native</span>
-        <span class="skill-tag">Node.js</span>
-        <span class="skill-tag">Express</span>
-        <span class="skill-tag">Spring Boot</span>
-        <span class="skill-tag">Tailwind CSS</span>
-        <span class="skill-tag">Prisma</span>
+        <span class="skill-tag">Terraform (modular)</span>
       </div>
     </div>
     <div class="skill-group reveal">
-      <div class="skill-group-label">Cloud & DevOps</div>
+      <div class="skill-group-label">CI/CD and Security</div>
       <div class="skill-tags">
-        <span class="skill-tag">AWS</span>
-        <span class="skill-tag">Terraform</span>
-        <span class="skill-tag">Docker</span>
-        <span class="skill-tag">Kubernetes</span>
-        <span class="skill-tag">GitHub Actions</span>
-        <span class="skill-tag">CI/CD</span>
-        <span class="skill-tag">Linux</span>
-        <span class="skill-tag">Nginx</span>
-        <span class="skill-tag">Prometheus</span>
-        <span class="skill-tag">Grafana</span>
+        <span class="skill-tag">GitHub Actions (OIDC)</span><span class="skill-tag">Deployment Automation</span><span class="skill-tag">Rollout and Rollback</span><span class="skill-tag">Trivy</span>
       </div>
     </div>
     <div class="skill-group reveal">
-      <div class="skill-group-label">Databases</div>
+      <div class="skill-group-label">Containers and Orchestration</div>
       <div class="skill-tags">
-        <span class="skill-tag">PostgreSQL</span>
-        <span class="skill-tag">MongoDB</span>
-        <span class="skill-tag">MySQL</span>
-        <span class="skill-tag">SQLite</span>
-        <span class="skill-tag">Firebase</span>
-        <span class="skill-tag">Supabase</span>
+        <span class="skill-tag">Docker</span><span class="skill-tag">Kubernetes (k3s, kind)</span>
       </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-label">Monitoring</div>
+      <div class="skill-tags"><span class="skill-tag">Prometheus</span><span class="skill-tag">Grafana</span><span class="skill-tag">CloudWatch</span><span class="skill-tag">Uptime Kuma</span><span class="skill-tag">Logging</span></div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-label">Linux and Scripting</div>
+      <div class="skill-tags"><span class="skill-tag">Linux (Ubuntu, WSL2)</span><span class="skill-tag">Bash</span><span class="skill-tag">Python</span><span class="skill-tag">YAML</span><span class="skill-tag">Nginx</span></div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-label">Version Control and Networking</div>
+      <div class="skill-tags"><span class="skill-tag">Git</span><span class="skill-tag">GitHub</span><span class="skill-tag">DNS</span><span class="skill-tag">HTTP/HTTPS</span></div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-label">Cost management</div>
+      <div class="skill-tags"><span class="skill-tag">AWS Free Tier optimization</span><span class="skill-tag">Right-sizing</span><span class="skill-tag">Budget-aware architecture</span></div>
+    </div>
+    <div class="skill-group reveal skill-group-secondary">
+      <div class="skill-group-label">Also builds with</div>
+      <div class="skill-tags"><span class="skill-tag">Python (Flask)</span><span class="skill-tag">Java (Spring Boot)</span><span class="skill-tag">JavaScript / TypeScript (Next.js)</span><span class="skill-tag">SQL</span><span class="skill-tag">React</span><span class="skill-tag">React Native</span><span class="skill-tag">Expo</span><span class="skill-tag">Node.js</span><span class="skill-tag">Express</span><span class="skill-tag">Prisma</span><span class="skill-tag">Tailwind CSS</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">MySQL</span><span class="skill-tag">MongoDB</span><span class="skill-tag">SQLite</span><span class="skill-tag">Firebase</span><span class="skill-tag">Supabase</span></div>
     </div>
   </div>
 </section>
@@ -1320,26 +1561,28 @@
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-label reveal">Selected work</div>
-  <div class="section-title reveal">Projects</div>
+  <div class="section-label reveal">Infrastructure and delivery</div>
+  <div class="section-title reveal">DevOps projects</div>
   <div class="projects-list">
 
-    <!-- 1: image left -->
     <div class="project-row reveal">
       <div class="project-img-wrap">
-        <img src="Images/devops.png" alt="Task Tracker DevOps" />
+        <img src="Images/orderflow.svg" alt="OrderFlow pipeline from GitHub Actions and OIDC to AWS ECR and a k3s cluster running a Spring Boot API, PostgreSQL, SQS, and a background worker." loading="lazy" width="1200" height="750" />
       </div>
       <div class="project-info">
-        <div class="project-type">Cloud Native &middot; DevOps</div>
-        <div class="project-name">Task Tracker</div>
-        <div class="project-desc">Production-grade REST API with Java Spring Boot and MongoDB, containerized with Docker, orchestrated on a self-managed Kubernetes (k3s) cluster on AWS. Full IaC with Terraform, automated CI/CD via GitHub Actions, self-hosted runner, and AWS ECR private registry.</div>
+        <div class="project-type">AWS &middot; Terraform &middot; Kubernetes</div>
+        <div class="project-name">OrderFlow: DevOps Platform on AWS</div>
+        <div class="project-desc">End-to-end AWS platform for a Spring Boot order API and asynchronous processing.</div>
+        <ul class="project-bullets">
+          <li>Provisioned AWS infrastructure (VPC, subnet, security groups, EC2, ECR, IAM) with modular Terraform, and deployed a Spring Boot API and PostgreSQL on a k3s Kubernetes cluster.</li>
+          <li>Implemented async order processing using Amazon SQS and a background worker, with a least-privilege IAM role scoped to a single queue and no stored AWS credentials.</li>
+          <li>Built GitHub Actions CI/CD that authenticates to AWS via OIDC, builds the Docker image, tags it by commit SHA, and pushes it to ECR with image scanning enabled.</li>
+          <li>Debugged a failed OIDC login by inspecting live token claims and fixing the IAM trust policy. Cut costs by right-sizing EC2 and auditing AWS resources with Bash.</li>
+        </ul>
         <div class="project-stack">
-          <span class="stack-tag">Java</span><span class="stack-tag">Spring Boot</span>
-          <span class="stack-tag">Kubernetes</span><span class="stack-tag">AWS</span>
-          <span class="stack-tag">Terraform</span><span class="stack-tag">Docker</span>
+          <span class="stack-tag">AWS</span><span class="stack-tag">Terraform</span><span class="stack-tag">k3s</span><span class="stack-tag">Spring Boot</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">SQS</span><span class="stack-tag">ECR</span><span class="stack-tag">GitHub Actions</span><span class="stack-tag">OIDC</span>
         </div>
-        <a class="project-link" href="https://github.com/Dakshinab/task-tracker-devops" target="_blank">
-          View on GitHub
+        <a class="project-link" href="https://github.com/Dakshinab/orderflow-devops" target="_blank" rel="noopener">GitHub
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </a>
       </div>
@@ -1347,41 +1590,64 @@
 
     <!-- 2: image right -->
     <div class="project-row reverse reveal">
+      <!-- TODO: Add the verified DeployFlow GitHub URL before adding its hidden GitHub button. -->
       <div class="project-img-wrap">
-        <img src="Images/well.png" alt="Hotel Booking App" />
+        <img src="Images/deployflow.svg" alt="DeployFlow pipeline from GitHub Actions with Trivy to an AWS EC2 Flask container, monitored by Prometheus, Grafana, and CloudWatch." loading="lazy" width="1200" height="750" />
       </div>
       <div class="project-info">
-        <div class="project-type">AWS &middot; Well-Architected</div>
-        <div class="project-name">Hotel Booking App</div>
-        <div class="project-desc">Full-stack hotel booking system on AWS following all six Well-Architected pillars. CI/CD with GitHub Actions and AWS Amplify, IaC with Terraform (RDS, S3, IAM), IAM least-privilege, SSL-encrypted DB connections, secrets in SSM Parameter Store.</div>
+        <div class="project-type">CI/CD &middot; Docker &middot; Observability</div>
+        <div class="project-name">DeployFlow: CI/CD Pipeline for a Containerized API on AWS</div>
+        <div class="project-desc">Automated delivery and monitoring for a containerized Flask API on AWS.</div>
+        <ul class="project-bullets">
+          <li>Containerized a Python Flask API with Docker using multi-layer builds and pinned dependencies, and provisioned EC2, VPC, IAM, and S3 with Terraform.</li>
+          <li>Built GitHub Actions CI/CD that runs on every push: builds and version-tags the image, scans it with Trivy, and deploys it to AWS automatically.</li>
+          <li>Implemented Prometheus and Grafana dashboards plus CloudWatch CPU and memory alarms to detect issues before users report them.</li>
+          <li>Managed AWS Free Tier costs by terminating and cleaning up resources after each phase, keeping total project spend near $0.</li>
+        </ul>
         <div class="project-stack">
-          <span class="stack-tag">Next.js</span><span class="stack-tag">TypeScript</span>
-          <span class="stack-tag">AWS Amplify</span><span class="stack-tag">RDS</span>
-          <span class="stack-tag">Terraform</span><span class="stack-tag">Prisma</span>
+          <span class="stack-tag">AWS</span><span class="stack-tag">Terraform</span><span class="stack-tag">Docker</span><span class="stack-tag">Flask</span><span class="stack-tag">GitHub Actions</span><span class="stack-tag">Trivy</span><span class="stack-tag">Prometheus</span><span class="stack-tag">Grafana</span><span class="stack-tag">CloudWatch</span>
         </div>
-        <a class="project-link" href="https://github.com/Dakshinab/devops-aws-app" target="_blank">
-          View on GitHub
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        </a>
       </div>
     </div>
 
-    <!-- 3: image left -->
     <div class="project-row reveal">
+      <!-- TODO: Add the verified CloudPath GitHub URL before adding its hidden GitHub button. -->
       <div class="project-img-wrap">
-        <img src="Images/app.png" alt="JobTracker AI" />
+        <img src="Images/cloudpath.svg" alt="CloudPath pipeline from GitHub Actions and Trivy to a kind Kubernetes cluster with a Namespace, ConfigMap, Secret, Deployment, Service, and operational tooling." loading="lazy" width="1200" height="750" />
       </div>
       <div class="project-info">
-        <div class="project-type">Mobile &middot; AI/LLM</div>
-        <div class="project-name">JobTracker AI</div>
-        <div class="project-desc">Cross-platform mobile app (iOS &amp; Android) with React Native and Expo. Integrates Groq LLaMA 3.3 70B for AI-powered job match scoring, interview probability predictions, and stage-based career coaching. Supabase auth, Vercel serverless proxy, GitHub Actions CI/CD.</div>
+        <div class="project-type">Kubernetes &middot; CI/CD &middot; IaC</div>
+        <div class="project-name">CloudPath: CI/CD and Kubernetes Deployment Pipeline</div>
+        <div class="project-desc">A reproducible local Kubernetes delivery pipeline for a Spring Boot service.</div>
+        <ul class="project-bullets">
+          <li>Containerized a Spring Boot API with Docker using a non-root user and .dockerignore, then deployed it to kind with Namespace, ConfigMap, Secret, Deployment, and Service resources.</li>
+          <li>Built GitHub Actions that runs tests, builds the app and Docker image, and scans the image with Trivy on every push.</li>
+          <li>Tested release rollout and rollback, documenting that kubectl rollout undo does not revert ConfigMap changes, so config is restored from Git.</li>
+          <li>Defined Terraform init, fmt, validate, and plan checks and verified the setup from scratch using only the README at zero cloud cost.</li>
+        </ul>
         <div class="project-stack">
-          <span class="stack-tag">React Native</span><span class="stack-tag">Expo</span>
-          <span class="stack-tag">Groq LLaMA</span><span class="stack-tag">Supabase</span>
-          <span class="stack-tag">Vercel</span><span class="stack-tag">TypeScript</span>
+          <span class="stack-tag">Kubernetes</span><span class="stack-tag">kind</span><span class="stack-tag">Docker</span><span class="stack-tag">Spring Boot</span><span class="stack-tag">GitHub Actions</span><span class="stack-tag">Trivy</span><span class="stack-tag">Terraform</span>
         </div>
-        <a class="project-link" href="https://github.com/Dakshinab/JobTracker-with-AI" target="_blank">
-          View on GitHub
+      </div>
+    </div>
+
+    <div class="project-row reverse reveal">
+      <div class="project-img-wrap">
+        <img src="Images/serenestay.svg" alt="Serene Stay delivery flow from GitHub Actions to AWS Amplify and a Next.js SSR app connected to RDS, S3, SSM Parameter Store, and CloudWatch." loading="lazy" width="1200" height="750" />
+      </div>
+      <div class="project-info">
+        <div class="project-type">AWS Well-Architected &middot; Security</div>
+        <div class="project-name">Serene Stay: AWS Well-Architected Hotel Booking App</div>
+        <div class="project-desc">A full-stack hotel booking application deployed with AWS-focused delivery and security controls.</div>
+        <ul class="project-bullets">
+          <li>Provisioned RDS PostgreSQL, S3, IAM, and security groups with modular Terraform, and deployed a full-stack Next.js SSR application on AWS Amplify with secrets in SSM Parameter Store.</li>
+          <li>Secured the application with IAM least-privilege policies scoped to S3 and CloudWatch, SSL-encrypted database connections, and server-side file type and size validation.</li>
+          <li>Built GitHub Actions checks for ESLint and TypeScript on every push, with AWS Amplify handling automated build, deployment, and rollback on failure.</li>
+        </ul>
+        <div class="project-stack">
+          <span class="stack-tag">AWS Amplify</span><span class="stack-tag">RDS</span><span class="stack-tag">S3</span><span class="stack-tag">SSM</span><span class="stack-tag">IAM</span><span class="stack-tag">Terraform</span><span class="stack-tag">Next.js</span><span class="stack-tag">TypeScript</span><span class="stack-tag">GitHub Actions</span>
+        </div>
+        <a class="project-link" href="https://github.com/Dakshinab/devops-aws-app" target="_blank" rel="noopener">GitHub
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </a>
       </div>
@@ -1395,7 +1661,7 @@
     <!-- 4: image right -->
     <div class="project-row reverse reveal">
       <div class="project-img-wrap">
-        <img src="Images/oracle.png" alt="SmartLink" />
+        <img src="Images/smartlink.svg" alt="SmartLink deployment flow on Oracle Cloud with Nginx, Docker Compose, Prometheus, and Grafana." loading="lazy" width="1200" height="750" />
       </div>
       <div class="project-info">
         <div class="project-type">DevOps &middot; Production</div>
@@ -1459,7 +1725,7 @@
     </div>
   </div>
   <div class="projects-footer reveal">
-    <button class="btn-secondary" id="projects-toggle" type="button" aria-expanded="false" aria-controls="extra-projects">Show 3 more projects</button>
+    <button class="btn-secondary" id="projects-toggle" type="button" aria-expanded="false" aria-controls="extra-projects">Show more projects</button>
     <a class="btn-secondary" href="https://github.com/Dakshinab" target="_blank">View all projects on GitHub</a>
   </div>
 </section>
@@ -1469,36 +1735,17 @@
 <!-- CERTIFICATIONS -->
 <section id="certifications">
   <div class="section-label reveal">Professional learning</div>
-  <div class="section-title reveal">Certifications</div>
+  <div class="section-title reveal">Certifications &amp; Training</div>
   <div class="cert-grid">
     <div class="cert-card reveal">
-      <div class="cert-card-title">SLIIT</div>
-      <div class="cert-list">
-        <span class="cert-chip">Predictive Modeling &amp; Python &bull; 2025</span>
-      </div>
+      <div class="cert-card-title">DevOps and cloud</div>
+      <div class="cert-list"><span class="cert-chip">Getting Started with DevOps on AWS &middot; AWS &middot; 2026</span><span class="cert-chip">AWS Knowledge: Cloud Essentials Training &middot; AWS &middot; 2026</span><span class="cert-chip">Configure CI/CD Workflows &middot; Microsoft Learn &middot; 2026</span><span class="cert-chip">DevOps Fundamentals &middot; Alison &middot; 2025</span><span class="cert-chip">Python Developer &middot; Sololearn &middot; 2025</span><span class="cert-chip">Java Intermediate &middot; Sololearn &middot; 2025</span></div>
     </div>
-    <div class="cert-card reveal">
-      <div class="cert-card-title">SoloLearn</div>
-      <div class="cert-list">
-        <span class="cert-chip">Python Developer</span>
-        <span class="cert-chip">Java Intermediate</span>
-        <span class="cert-chip">Web Development</span>
-        <span class="cert-chip">Data Analytics with AI</span>
-      </div>
-    </div>
-    <div class="cert-card reveal">
-      <div class="cert-card-title">Alison eLearning</div>
-      <div class="cert-list">
-        <span class="cert-chip">DevOps Fundamentals</span>
-        <span class="cert-chip">AI in Project Management</span>
-      </div>
-    </div>
-    <div class="cert-card reveal">
-      <div class="cert-card-title">Kaggle</div>
-      <div class="cert-list">
-        <span class="cert-chip">Intro to Machine Learning</span>
-        <span class="cert-chip">Pandas</span>
-      </div>
+  </div>
+  <button class="btn-secondary" id="learning-toggle" type="button" aria-expanded="false" aria-controls="other-learning">Show other learning</button>
+  <div id="other-learning" class="extra-learning" hidden>
+    <div class="cert-grid">
+      <div class="cert-card"><div class="cert-card-title">Other learning</div><div class="cert-list"><span class="cert-chip">Predictive Modeling and Python &middot; SLIIT &middot; 2025</span><span class="cert-chip">Web Development &middot; SoloLearn</span><span class="cert-chip">Data Analytics with AI &middot; SoloLearn</span><span class="cert-chip">AI in Project Management &middot; Alison</span><span class="cert-chip">Intro to Machine Learning &middot; Kaggle</span><span class="cert-chip">Pandas &middot; Kaggle</span></div></div>
     </div>
   </div>
 </section>
@@ -1515,8 +1762,17 @@
         <div class="exp-role">DevOps Engineer Intern</div>
         <div class="exp-company">Codezela Technologies (Pvt) Ltd</div>
       </div>
-      <div class="exp-period">Apr 2026 &ndash; Present &middot; Hybrid</div>
-      <div class="exp-desc">Deployed full-stack Next.js on AWS following all six Well-Architected pillars. Built CI/CD with GitHub Actions and AWS Amplify. Authored Terraform configurations for RDS, S3, IAM, and security groups &mdash; replacing ClickOps with infrastructure as code.</div>
+      <div class="exp-period">16 March 2026 &ndash; 25 September 2026 &middot; Hybrid</div>
+      <div class="exp-desc">
+        <ul>
+          <li>Contributed to application deployments and releases in development and production, using Git, CI/CD workflows, and deployment pipelines.</li>
+          <li>Worked on Linux servers, helping with server configuration, application setup, and environment management.</li>
+          <li>Helped troubleshoot deployment and runtime issues on Linux environments.</li>
+          <li>Worked with Docker containers, helping with their configuration, deployment, and basic maintenance.</li>
+          <li>Helped with cloud infrastructure, application monitoring, and logging in production environments.</li>
+          <li>Worked with the technical team on infrastructure improvements and DevOps practices.</li>
+        </ul>
+      </div>
     </div>
     <div class="exp-item reveal">
       <div>
@@ -1531,25 +1787,65 @@
 
 <hr class="section-divider" />
 
+<!-- CHAT -->
+<section id="chat-section">
+  <div class="section-label reveal">AI Agent</div>
+  <div class="section-title reveal">Ask anything about me</div>
+  <div class="chat-wrap reveal">
+    <div class="chat-header">
+      <div class="chat-avatar">MR</div>
+      <div class="chat-header-info">
+        <p>MergeRequest Agent</p>
+        <span>Powered by Groq &middot; LLaMA 3.3 70B</span>
+      </div>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="msg agent">
+        <div class="msg-icon">MR</div>
+        <div class="msg-bubble">Hi &mdash; I'm Dakshina's AI agent, focused on his DevOps and cloud work. Ask me about his AWS projects, CI/CD pipelines, Kubernetes experience, or whether he is a fit for your role.</div>
+      </div>
+    </div>
+    <div class="chat-suggestions" id="suggestions">
+      <button class="suggestion-chip" onclick="askSuggestion(this)">What DevOps projects has he built?</button>
+      <button class="suggestion-chip" onclick="askSuggestion(this)">Does he know Kubernetes?</button>
+      <button class="suggestion-chip" onclick="askSuggestion(this)">How does his CI/CD pipeline work?</button>
+      <button class="suggestion-chip" onclick="askSuggestion(this)">What did he do at Codezela?</button>
+      <button class="suggestion-chip" onclick="askSuggestion(this)">Is he available now?</button>
+    </div>
+    <div class="chat-input-row">
+      <div class="chat-input-wrap">
+        <textarea class="chat-input" id="chat-input" rows="1" placeholder=" " aria-label="Ask about experience, skills, or availability"></textarea>
+        <div class="chat-input-hint" aria-hidden="true"><span>Ask</span><span>about</span><span>experience,</span><span>skills,</span><span>availability...</span></div>
+      </div>
+      <button class="chat-send" id="send-btn" onclick="sendMessage()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-label reveal">Get in touch</div>
-  <div class="section-title reveal">Let's talk</div>
+  <div class="section-title reveal">Hiring for DevOps, Cloud, or Platform roles?</div>
   <div class="contact-card reveal">
-    <p>I'm actively looking for Software Engineer and DevOps Engineer roles. If my background fits what you need, I'd love to hear from you.</p>
+    <p>I'm actively looking for Junior DevOps, Cloud, and Platform Engineer roles. If my background fits what you need, I'd love to hear from you.</p>
     <div class="contact-links">
       <a class="btn-primary" href="mailto:dakshinabanu@gmail.com">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         Send email
       </a>
-      <a class="btn-secondary" href="https://www.linkedin.com/in/dakshina-dissanayake-301162227" target="_blank">
+      <a class="btn-secondary" href="https://www.linkedin.com/in/dakshina-dissanayake-301162227" target="_blank" rel="noopener">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         LinkedIn
       </a>
-      <a class="btn-secondary" href="https://github.com/Dakshinab" target="_blank">
+      <a class="btn-secondary" href="https://github.com/Dakshinab" target="_blank" rel="noopener">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
         GitHub
       </a>
+      <a class="btn-secondary" href="/Dakshina_Dissanayake_DevOps_CV.pdf" target="_blank" rel="noopener" download>Download CV</a>
     </div>
   </div>
 </section>
@@ -1560,59 +1856,180 @@
 
 <script>
 
-const SYSTEM_PROMPT = `You are MergeRequest — the AI agent representing Dakshina Dissanayake to recruiters and hiring managers. Your job is to present Dakshina professionally, confidently, and accurately based on the following profile. Be concise, direct, and enthusiastic about his work. Never make things up.
+const SYSTEM_PROMPT = `You are MergeRequest, the AI agent representing Dakshina Dissanayake to recruiters and hiring managers. Lead with his DevOps and cloud experience. Be concise, professional, accurate, and positive. Never invent experience, tools, numbers, repo links, or availability. If you are unsure, say so and point the recruiter to email or LinkedIn.
 
 ABOUT DAKSHINA:
 - Name: Dakshina Dissanayake
+- Role: Junior DevOps Engineer
 - Location: Sri Lanka
-- Status: Final-year BSc (Hons) Information Technology student at Horizon Campus, Malabe. GPA: 3.5/4.0
+- Status: Final-year BSc (Hons) Information Technology student at Horizon Campus, Malabe. GPA: 3.48/4.0
 - Email: dakshinabanu@gmail.com
 - LinkedIn: https://www.linkedin.com/in/dakshina-dissanayake-301162227
 - GitHub: https://github.com/Dakshinab
-- Looking for: Software Engineer and/or DevOps Engineer roles
+- Looking for: Junior DevOps Engineer, Cloud Engineer, and Platform Engineer roles
 - Available: Open to opportunities now
 
-EXPERIENCE:
-1. DevOps Engineer Intern — Codezela Technologies (Pvt) Ltd | April 2026 – Present | Hybrid
-   - Deployed full-stack Next.js on AWS (Amplify, RDS PostgreSQL, S3) following all 6 AWS Well-Architected pillars
-   - Built CI/CD pipeline with GitHub Actions and AWS Amplify (linting, type-checking, auto-deploy)
-   - Authored Terraform IaC for RDS, S3, IAM, security groups — replaced ClickOps
+DEVOPS EXPERIENCE:
+1. DevOps Engineer Intern — Codezela Technologies (Pvt) Ltd | 16 March 2026 – 25 September 2026 | Hybrid
+   - Contributed to application deployments and releases in development and production, using Git, CI/CD workflows, and deployment pipelines
+   - Worked on Linux servers, helping with server configuration, application setup, and environment management
+   - Helped troubleshoot deployment and runtime issues on Linux environments
+   - Worked with Docker containers, helping with their configuration, deployment, and basic maintenance
+   - Helped with cloud infrastructure, application monitoring, and logging in production environments
+   - Worked with the technical team on infrastructure improvements and DevOps practices
 
-2. Full Stack Developer Intern — I4matrix (Pvt) Ltd | 6 months | Hybrid
-   - Built responsive Next.js marketing site with Tailwind CSS
-   - Integrated 10+ REST API modules into Next.js 14 + TypeScript admin dashboard with JWT auth and auto token refresh
-   - Resolved CORS, deployment issues, shipped full-stack app to Railway
+DEVOPS PROJECTS:
+1. OrderFlow: DevOps Platform on AWS
+   - Provisioned AWS VPC, subnet, security groups, EC2, ECR, and IAM with modular Terraform
+   - Deployed a Spring Boot API and PostgreSQL on a k3s Kubernetes cluster
+   - Implemented asynchronous order processing with Amazon SQS and a background worker
+   - Used a least-privilege IAM role scoped to one queue and no stored AWS credentials
+   - Built GitHub Actions CI/CD with AWS OIDC, commit-SHA image tags, ECR pushes, and image scanning
+   - Debugged OIDC token claims and fixed the IAM trust policy; right-sized EC2 and audited AWS resources with Bash
+   - Repository: https://github.com/Dakshinab/orderflow-devops
 
-SKILLS:
-- Languages: JavaScript, TypeScript, Python, Java, PHP, SQL, C++
-- Frameworks: Next.js, React, React Native, Expo, Node.js, Express, Spring Boot, Prisma, Tailwind CSS
-- Cloud & DevOps: AWS, Terraform, GitHub Actions, CI/CD, Docker, Kubernetes, Vercel, Linux, Nginx, Prometheus, Grafana
-- Databases: PostgreSQL, MongoDB, MySQL, SQLite, Firebase, Supabase
+2. DeployFlow: CI/CD Pipeline for a Containerized API on AWS
+   - Containerized a Python Flask API with multi-layer Docker builds and pinned dependencies
+   - Provisioned EC2, VPC, IAM, and S3 with Terraform
+   - Built GitHub Actions delivery with version tags, Trivy scanning, and automatic AWS deployment
+   - Added Prometheus, Grafana, and CloudWatch CPU and memory monitoring
+   - Managed AWS Free Tier resources and kept total project spend near $0
 
-PROJECTS:
-1. Task Tracker (Cloud Native DevOps): Java Spring Boot REST API, MongoDB, Docker, Kubernetes (k3s) on AWS, Terraform IaC, GitHub Actions CI/CD, AWS ECR private registry, self-hosted runner. Reviewed against AWS Well-Architected 6 pillars.
+3. CloudPath: CI/CD and Kubernetes Deployment Pipeline
+   - Containerized a Spring Boot API with a non-root Docker user and .dockerignore
+   - Deployed Namespace, ConfigMap, Secret, Deployment, and Service resources to kind
+   - Built GitHub Actions checks for tests, builds, Docker image creation, and Trivy scanning
+   - Tested rollout and rollback and documented that kubectl rollout undo does not revert ConfigMap changes
+   - Verified Terraform init, fmt, validate, and plan from scratch at zero cloud cost
 
-2. AWS Hotel Booking App (Well-Architected): Full-stack Next.js 15, TypeScript, Prisma, PostgreSQL on AWS Amplify. Terraform for RDS/S3/IAM. IAM least-privilege, SSL-encrypted DB, SSM Parameter Store for secrets. GitHub Actions ESLint + TypeScript CI.
+4. Serene Stay: AWS Well-Architected Hotel Booking App
+   - Provisioned RDS PostgreSQL, S3, IAM, and security groups with modular Terraform
+   - Deployed a Next.js SSR application on AWS Amplify with secrets in SSM Parameter Store
+   - Used least-privilege IAM policies scoped to S3 and CloudWatch, SSL-encrypted database connections, and server-side file validation
+   - Ran ESLint and TypeScript checks with GitHub Actions; Amplify handled build, deployment, and rollback
+   - Repository: https://github.com/Dakshinab/devops-aws-app
 
-3. JobTracker AI (Mobile + AI): Cross-platform React Native + Expo + TypeScript mobile app. Groq LLaMA 3.3 70B for job match scoring, interview probability, career coaching. Supabase auth + PostgreSQL, Vercel serverless proxy (keeps API key off client), GitHub Actions CI/CD with secret scanning.
+OTHER PROJECTS:
+- SmartLink: Python Flask URL shortener on Oracle Cloud using Docker Compose, Terraform, Nginx rate limiting, Prometheus, and Grafana. Repository: https://github.com/Dakshinab/smartlink
+- Task Tracker: Java Spring Boot and MongoDB REST API using Docker, k3s on AWS, Terraform, GitHub Actions, and ECR. Repository: https://github.com/Dakshinab/task-tracker-devops
+- JobTracker AI: React Native and Expo mobile app using Groq LLaMA, Supabase, PostgreSQL, Vercel, and GitHub Actions. Repository: https://github.com/Dakshinab/JobTracker-with-AI
+- Panda's Kitchen: React, Node.js/Express, MongoDB, and Cloudinary restaurant platform for a real Colombo client. Repository: https://github.com/Dakshinab/Panda-s-Kitchen
+- Carbon Footprint Calculator: React and Node.js tourism emissions system for Sri Lanka using IPCC, DEFRA, and IEA factors, SQLite, REST API, and PDF export. Repository: https://github.com/Dakshinab/Sri-Lanka-Tourist-Carbon-Footprint-Calculator
 
-4. SmartLink (Production DevOps): Live URL shortener on Oracle Cloud (Singapore). Python Flask, SQLAlchemy, Docker Compose, Terraform, Nginx with rate limiting, Prometheus + Grafana monitoring. Zero manual deployment.
+SECONDARY SKILLS:
+- Cloud and DevOps: AWS, Terraform, GitHub Actions, OIDC, Docker, Kubernetes, k3s, kind, Linux, Bash, Nginx, Prometheus, Grafana, Trivy, CloudWatch, Vercel
+- Full-stack, mobile, and AI: Python Flask, Java Spring Boot, JavaScript, TypeScript, Next.js, React, React Native, Expo, Node.js, Express, Prisma, Tailwind CSS, SQL
+- Databases: PostgreSQL, MySQL, MongoDB, SQLite, Firebase, Supabase
 
-5. Panda's Kitchen (Freelance): Real-world client project — full-stack restaurant platform. React, Node.js/Express, MongoDB, Cloudinary. Full admin dashboard, Uber Eats / PickMe Food deep links, client manages content independently.
-
-6. Carbon Footprint Calculator (Final Year Project): Science-based emission system for Sri Lanka tourism. IPCC/DEFRA/IEA emission factors, 4-step wizard, 60 activity templates across 20 destinations, SQLite REST API, PDF export, IoT and LLM integration points.
-
-CERTIFICATIONS: Predictive Modeling & Python (SLIIT), Python Developer / Java Intermediate / Data Analytics with AI (SoloLearn), DevOps Fundamentals / AI in Project Management (Alison), Intro to ML / Pandas (Kaggle)
+TRAINING BADGES:
+- Getting Started with DevOps on AWS, AWS, 2026
+- AWS Knowledge: Cloud Essentials Training, AWS, 2026
+- Configure CI/CD Workflows, Microsoft Learn, 2026
+- DevOps Fundamentals, Alison, 2025
+- Python Developer and Java Intermediate, Sololearn, 2025
+- Other learning includes SLIIT Predictive Modeling and Python, SoloLearn Web Development and Data Analytics with AI, Alison AI in Project Management, and Kaggle Intro to Machine Learning and Pandas
+- Describe the AWS items as training badges, not exam certifications
 
 INSTRUCTIONS:
-- Always be positive and professional about Dakshina
-- Highlight the most relevant experience for what the recruiter is asking
-- Be concise — 2-4 sentences per response unless more detail is requested
-- If asked about salary or compensation, say Dakshina is open to discussing based on the role and company
-- End responses with a light CTA like "Want me to go deeper on any of this?" occasionally
-- Never claim Dakshina has experience he doesn't have`;
+- Highlight the most relevant DevOps project or experience for the recruiter's question
+- Be concise, usually 2-4 sentences unless more detail is requested
+- If asked about salary, say Dakshina is open to discussing based on the role and company
+- Never claim Dakshina led, owned, or built work that is not stated here
+- If asked about an unsupported detail, say you do not have enough information and point to email or LinkedIn`;
 
 let conversationHistory = [];
+
+const pipelineStages = Array.from(document.querySelectorAll('.pipeline-stage'));
+const pipelineProgress = document.getElementById('pipeline-progress');
+const pipelineLog = document.getElementById('pipeline-log');
+const pipelineLogLines = [
+  '$ git push origin main',
+  '[ ok ] build      docker image built, tagged by commit SHA',
+  '[ ok ] test       all checks passed',
+  '[ ok ] trivy      no critical vulnerabilities',
+  '[ ok ] ecr        image pushed',
+  '[ ok ] deploy     rolled out',
+  '[ ok ] health     service healthy'
+];
+
+function renderPipelineLog(count) {
+  pipelineLog.innerHTML = pipelineLogLines
+    .slice(0, count)
+    .map((line, index) => index === 0 ? line : `<span class="log-ok">${line}</span>`)
+    .join('\n');
+}
+
+function updatePipeline(index) {
+  pipelineStages.forEach((stage, stageIndex) => {
+    stage.classList.toggle('is-running', stageIndex === index);
+    stage.classList.toggle('is-passed', stageIndex < index);
+  });
+  const progress = pipelineStages.length > 1 ? index / (pipelineStages.length - 1) : 1;
+  if (window.matchMedia('(max-width: 768px)').matches) {
+    pipelineProgress.style.width = '2px';
+    pipelineProgress.style.height = `${progress * 90}%`;
+  } else {
+    pipelineProgress.style.width = `${progress * 90}%`;
+    pipelineProgress.style.height = '2px';
+  }
+  renderPipelineLog(Math.min(index + 1, pipelineLogLines.length));
+}
+
+function runPipeline() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    pipelineStages.forEach(stage => stage.classList.add('is-passed'));
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      pipelineProgress.style.width = '2px';
+      pipelineProgress.style.height = '90%';
+    } else {
+      pipelineProgress.style.width = '90%';
+      pipelineProgress.style.height = '2px';
+    }
+    renderPipelineLog(pipelineLogLines.length);
+    return;
+  }
+
+  let index = 0;
+  updatePipeline(index);
+  const advance = () => {
+    index += 1;
+    if (index >= pipelineStages.length) {
+      pipelineStages.forEach(stage => {
+        stage.classList.remove('is-running');
+        stage.classList.add('is-passed');
+      });
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        pipelineProgress.style.width = '2px';
+        pipelineProgress.style.height = '90%';
+      } else {
+        pipelineProgress.style.width = '90%';
+        pipelineProgress.style.height = '2px';
+      }
+      renderPipelineLog(pipelineLogLines.length);
+      setTimeout(() => {
+        pipelineStages.forEach(stage => stage.classList.remove('is-passed'));
+        pipelineProgress.style.width = '0';
+        pipelineProgress.style.height = '0';
+        renderPipelineLog(1);
+        index = 0;
+        setTimeout(advance, 700);
+      }, 2000);
+      return;
+    }
+    updatePipeline(index);
+    setTimeout(advance, 700);
+  };
+  setTimeout(advance, 700);
+}
+
+runPipeline();
+
+const projectsSection = document.getElementById('projects');
+const skillsSection = document.getElementById('skills');
+const projectsDivider = projectsSection.previousElementSibling;
+const skillsDivider = skillsSection.previousElementSibling;
+skillsSection.parentNode.insertBefore(projectsDivider, skillsDivider);
+skillsSection.parentNode.insertBefore(projectsSection, skillsDivider);
 
 const messagesEl = document.getElementById('chat-messages');
 const inputEl = document.getElementById('chat-input');
@@ -1625,10 +2042,13 @@ function scrollToBottom() {
 function appendMessage(role, text) {
   const msg = document.createElement('div');
   msg.className = 'msg ' + role;
-  msg.innerHTML = `
-    <div class="msg-icon">${role === 'agent' ? 'MR' : 'HR'}</div>
-    <div class="msg-bubble">${text.replace(/\n/g, '<br>')}</div>
-  `;
+  const icon = document.createElement('div');
+  icon.className = 'msg-icon';
+  icon.textContent = role === 'agent' ? 'MR' : 'HR';
+  const bubble = document.createElement('div');
+  bubble.className = 'msg-bubble';
+  bubble.textContent = text;
+  msg.append(icon, bubble);
   messagesEl.appendChild(msg);
   scrollToBottom();
 }
@@ -1725,17 +2145,26 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 const projectsToggle = document.getElementById('projects-toggle');
 const extraProjects = document.getElementById('extra-projects');
+const learningToggle = document.getElementById('learning-toggle');
+const otherLearning = document.getElementById('other-learning');
 
 projectsToggle.addEventListener('click', () => {
   const isExpanded = projectsToggle.getAttribute('aria-expanded') === 'true';
   projectsToggle.setAttribute('aria-expanded', String(!isExpanded));
-  projectsToggle.textContent = isExpanded ? 'Show 3 more projects' : 'Show fewer projects';
+  projectsToggle.textContent = isExpanded ? 'Show more projects' : 'Show fewer projects';
   extraProjects.classList.toggle('is-expanded', !isExpanded);
   extraProjects.setAttribute('aria-hidden', String(isExpanded));
 
   if (!isExpanded) {
     extraProjects.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
   }
+});
+
+learningToggle.addEventListener('click', () => {
+  const isExpanded = learningToggle.getAttribute('aria-expanded') === 'true';
+  learningToggle.setAttribute('aria-expanded', String(!isExpanded));
+  learningToggle.textContent = isExpanded ? 'Show other learning' : 'Hide other learning';
+  otherLearning.hidden = isExpanded;
 });
 
 const menuToggle = document.getElementById('menu-toggle');

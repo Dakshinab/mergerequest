@@ -1,6 +1,8 @@
 # MergeRequest
 
-> An AI-powered personal agent that pitches me to recruiters — so they call me instead of scrolling past my CV.
+[![Portfolio CI](https://github.com/Dakshinab/mergerequest/actions/workflows/ci.yml/badge.svg)](https://github.com/Dakshinab/mergerequest/actions/workflows/ci.yml)
+
+> A DevOps-focused portfolio and AI recruiter agent for Dakshina Dissanayake.
 
 **Live demo → [mergerequest.vercel.app](https://mergerequest.vercel.app)**
 
@@ -10,7 +12,7 @@
 
 ## What is this?
 
-MergeRequest is a recruiter-facing web app that acts as my personal AI hype agent. A recruiter describes the role they're hiring for, and the AI responds with exactly why I'm the right fit — pulling from my real background, projects, and skills.
+MergeRequest is a recruiter-facing portfolio for a Junior DevOps Engineer. It presents AWS, Terraform, Kubernetes, Docker, CI/CD, security, and observability work, then lets recruiters ask an AI agent about the projects and experience.
 
 Instead of a PDF that gets ignored, recruiters spend 5 minutes having a conversation with my AI agent. By the time they hit "Contact", they already know who I am.
 
@@ -18,11 +20,12 @@ Instead of a PDF that gets ignored, recruiters spend 5 minutes having a conversa
 
 ## Features
 
-- **AI Agent Chat** — powered by Groq LLaMA 3.3 70B, answers any question about my experience, skills, and projects
-- **Suggestion chips** — pre-built questions so recruiters know where to start
-- **Project showcase** — 6 selected projects with stack details and GitHub links
-- **Skills grid** — organized by languages, frameworks, cloud/DevOps, and databases
-- **Experience timeline** — internship history with key achievements
+- **Live pipeline hero** — animated commit-to-health delivery flow with reduced-motion support
+- **DevOps project showcase** — OrderFlow, DeployFlow, CloudPath, Serene Stay, SmartLink, and secondary projects
+- **Architecture diagrams** — hand-authored accessible SVG diagrams for DevOps projects
+- **DevOps skills grid** — AWS, Terraform, CI/CD, security, containers, Kubernetes, monitoring, Linux, networking, and cost management
+- **AI Agent Chat** — powered by Groq LLaMA 3.3 70B, focused on DevOps and cloud questions
+- **Experience and training** — Codezela and I4matrix experience plus DevOps training badges
 - **Contact section** — direct links to email, LinkedIn, and GitHub
 - **Mobile-first** — works perfectly on any device from a LinkedIn link
 - **Dark terminal aesthetic** — clean, premium, memorable
@@ -37,8 +40,9 @@ Instead of a PDF that gets ignored, recruiters spend 5 minutes having a conversa
 | AI Model | Groq API — LLaMA 3.3 70B Versatile |
 | Hosting | Vercel |
 | Font | Inter + JetBrains Mono (Google Fonts) |
+| CI | GitHub Actions — HTML validation and link checks |
 
-No frameworks. No build step. One file, zero dependencies. Ships anywhere instantly.
+No frontend framework or build step is required. The static page and serverless chat route deploy directly to Vercel.
 
 ---
 
@@ -47,7 +51,11 @@ No frameworks. No build step. One file, zero dependencies. Ships anywhere instan
 ```
 mergerequest/
 ├── index.html       # Entire app — UI, styles, and AI logic
-├── Images/          # Profile photo and project screenshots
+├── api/chat.js      # Hardened Vercel/Groq serverless endpoint
+├── Images/          # Profile photo, project assets, and SVG architecture diagrams
+├── favicon.svg      # Terminal-style site icon
+├── .github/workflows/ci.yml # HTML and link validation
+├── project.md       # Detailed project documentation
 └── README.md
 ```
 
@@ -62,15 +70,12 @@ git clone https://github.com/Dakshinab/mergerequest.git
 cd mergerequest
 ```
 
-### 2. Add your Groq API key
+### 2. Configure your Groq API key
 
-Open `index.html` and find this line near the bottom:
-
-```js
-const GROQ_API_KEY = "your_groq_api_key_here";
-```
-
-Replace it with your key from [console.groq.com](https://console.groq.com). The Groq free tier is sufficient for this app.
+For local development, set the `GROQ_API_KEY` environment variable. For Vercel,
+open **Project Settings → Environment Variables**, add a variable named
+`GROQ_API_KEY`, and paste the key from [console.groq.com](https://console.groq.com).
+The Groq free tier is sufficient for this app.
 
 ### 3. Add your photo
 
@@ -101,7 +106,8 @@ vercel
 
 Or connect your GitHub repo directly at [vercel.com/new](https://vercel.com/new) for automatic deployments on every push.
 
-> **Security note:** For production, move the Groq API key to a Vercel serverless function so it's never exposed in the client bundle. See the [Vercel Environment Variables docs](https://vercel.com/docs/environment-variables) for setup.
+> **Security note:** The API key is read only by `api/chat.js` and is never exposed
+> in the client bundle. See the [Vercel Environment Variables docs](https://vercel.com/docs/environment-variables) for setup.
 
 ---
 
@@ -118,6 +124,6 @@ Search for `ABOUT DAKSHINA` in the file to find the AI context block. The curren
 
 ## Built by
 
-**Dakshina Dissanayake** — Software Engineer & DevOps Engineer
+**Dakshina Dissanayake** — Junior DevOps Engineer
 
 [LinkedIn](https://www.linkedin.com/in/dakshina-dissanayake-301162227) · [GitHub](https://github.com/Dakshinab) · [dakshinabanu@gmail.com](mailto:dakshinabanu@gmail.com)
